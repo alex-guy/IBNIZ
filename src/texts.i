@@ -4,20 +4,24 @@ char*usagetext=
   "  -h(elp)       Dump this text\n"
   "  -v(ersion)    Dump version info\n"
   "  -c(ode) CODE  Execute code\n"
-  "  -n(oautorun)  Do not autorun loaded code or autohide OSD\n";
+  "  -n(oautorun)  Do not autorun loaded code or autohide OSD\n"
+  "  -s(ize) VAL   Size of the window\n"
+  "  -x VAL        X position of the window\n"
+  "  -y VAL        Y position of the window\n"
+  "  -r            Remove frame title and border\n";
 //  "  -e(ventlog)   Dump user events to stdout\n"
 //  "  -p(layback)   Play events back from stdin\n"
 //  "  -M(edia)      Dump media data (YUV video to stdout)\n"
 
 char*versiontext=
-  "IBNIZ version 1.1C00-NORELEASE";
+  "IBNIZ version 1.1D00-ALEXRELEASE";
 
 char*welcometext=
   "\n"
   "\n"
   "\n"
   "\n"
-  "\\ IBNIZ 1.1C00-NORELEASE\n"
+  "\\ IBNIZ 1.1D00-ALEXRELEASE\n"
   "\\\n"
   "\\ Press f12 for help.\n";
 

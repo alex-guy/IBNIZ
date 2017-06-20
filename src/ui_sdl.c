@@ -1084,6 +1084,10 @@ int main(int argc,char**argv)
 {
   signed char autorun=-1;
   char*codetoload = welcometext;
+  char*size="512";
+  char*x="0";
+  char*y="0";
+  char*noframe="0";
   ui.opt_dumpkeys=0;
   ui.opt_nonrealtime=0;
   ui.opt_playback=0;
@@ -1123,6 +1127,18 @@ int main(int argc,char**argv)
           ui.opt_dumpmedia=1;
           ui.opt_nonrealtime=1;
           break;
+	    case('s'):
+	      size = *++argv;
+	      break;
+	    case('x'):
+	      x = *++argv;
+	      break;
+	    case('y'):
+	      y = *++argv;
+	      break;
+	    case('r'):
+	      noframe = "1";
+	      break;
       }
     } else
     {
@@ -1150,10 +1166,19 @@ int main(int argc,char**argv)
 
   SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);
 
-  sdl.winsz=512;
-  sdl.s=SDL_SetVideoMode(sdl.winsz,sdl.winsz,0,SDL_RESIZABLE);
+  char windowpos[100];
+  strcpy(windowpos, "SDL_VIDEO_WINDOW_POS=");
+  strcat(windowpos, x);
+  strcat(windowpos, ",");
+  strcat(windowpos, y);
+  SDL_putenv(windowpos);
+
+  sdl.winsz=atoi(size);
+  if(noframe=="1") sdl.s=SDL_SetVideoMode(sdl.winsz,sdl.winsz,0,SDL_NOFRAME);
+  else sdl.s=SDL_SetVideoMode(sdl.winsz,sdl.winsz,0,SDL_RESIZABLE);
   sdl.o=SDL_CreateYUVOverlay(256,256,SDL_YUY2_OVERLAY,sdl.s);
   SDL_WM_SetCaption("IBNIZ", "IBNIZ");
+
  
   {SDL_AudioSpec as;
    as.freq=44100;
